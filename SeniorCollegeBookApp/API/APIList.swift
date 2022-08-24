@@ -25,15 +25,15 @@ struct API {
         static let baseURL = URL(string: "https://api.itbook.store/1.0/")!
         
         case newBook
-        case searchBook
+        case searchBook(String, Int)
         
         var url: URL {
             switch self {
             case .newBook:
                 return EndPoint.baseURL.appendingPathComponent("new")
                 
-            case .searchBook:
-                return EndPoint.baseURL.appendingPathComponent("search")
+            case .searchBook(let title, let page):
+                return EndPoint.baseURL.appendingPathComponent("search/\(title)/\(page)")
             }
         }
     }
@@ -42,12 +42,53 @@ struct API {
     
     private let apiQueue = DispatchQueue(label: "API", qos: .default, attributes: .concurrent)
     
+//    func fetchSearchBooks(title:String, page:Int) -> AnyPublisher<BookResponse, Error> {
+//        var searchBookUrl:URL = EndPoint.searchBook.url
+//        let urlComp = "\(title)/\(page)"
+//        searchBookUrl = searchBookUrl.appendingPathComponent(urlComp)
+//
+//        URLSession.shared.dataTaskPublisher(for: searchBookUrl)
+//            .receive(on: apiQueue)
+//            .map { $0.data }
+//            .decode(type: BookResponse.self, decoder: decoder)
+//            .mapError { error -> API.Error in
+//                switch error {
+//                case is URLError:
+//                    return Error.addressUnreachable(searchBookUrl)
+//                default: return Error.invalidResponse
+//                }
+//            }
+//            .map {
+//                return $0
+//            }
+//            .eraseToAnyPublisher()
+//    }
+    
+    func fetchSearchBooks(title:String, page:Int) -> AnyPublisher<BookResponse, Error> {
+        URLSession.shared.dataTaskPublisher(for: EndPoint.searchBook(title, page).url)
+            .receive(on: apiQueue)
+            .map { $0.data }
+            .decode(type: BookResponse.self, decoder: decoder)
+            .mapError { error -> API.Error in
+                switch error {
+                case is URLError:
+                    return Error.addressUnreachable(EndPoint.searchBook(title, page).url)
+                default: return Error.invalidResponse
+                }
+            }
+            .map {
+                return $0
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    
     func fetchNewBooks() -> AnyPublisher<BookResponse, Error> {
         URLSession.shared.dataTaskPublisher(for: EndPoint.newBook.url)
             .receive(on: apiQueue)
             .map { $0.data }
             .decode(type: BookResponse.self, decoder: decoder)
-            .mapError { error in
+            .mapError { error -> API.Error in
                 switch error {
                 case is URLError:
                     return Error.addressUnreachable(EndPoint.newBook.url)
@@ -60,5 +101,6 @@ struct API {
             .eraseToAnyPublisher()
     }
 }
+
 
 

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Zbj-kh-B8B">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="brF-cf-Tx4">
@@ -31,16 +31,29 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Yhe-5S-3Wh"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nZk-jH-Tvd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="W2K-mk-euc"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zGe-G1-HDw">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="3Ac-el-Dri"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nEt-EB-S0O"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zbj-kh-B8B" secondAttribute="trailing" id="0Xg-h2-nar"/>
-                            <constraint firstItem="Zbj-kh-B8B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1Kf-5L-Hcu"/>
+                            <constraint firstItem="Zbj-kh-B8B" firstAttribute="top" secondItem="zGe-G1-HDw" secondAttribute="bottom" id="1Kf-5L-Hcu"/>
+                            <constraint firstItem="zGe-G1-HDw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R4L-ja-Bxf"/>
+                            <constraint firstItem="zGe-G1-HDw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="apJ-BT-T4E"/>
                             <constraint firstItem="Zbj-kh-B8B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dZd-Hm-dwP"/>
+                            <constraint firstItem="zGe-G1-HDw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="m5L-Qu-rYf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Zbj-kh-B8B" secondAttribute="bottom" id="wpg-na-qZk"/>
                         </constraints>
                     </view>
@@ -50,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>
