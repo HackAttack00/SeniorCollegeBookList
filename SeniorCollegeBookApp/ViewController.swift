@@ -109,13 +109,11 @@ extension ViewController: UITableViewDataSource {
         {
             let destination = segue.destination as! BookDetailInfoViewController
             let index = sender as! Int
-
-            if let imageStringOfURL = self.books[index].image {
-                destination.downloadImage(from: URL(string: imageStringOfURL)!)
-            }
             
-            if let desc = self.books[index].subtitle {
-                destination.setBookDescription(desc: desc)
+            if let isbn13 = self.books[index].isbn13 {
+                destination.bookCode = isbn13
+            } else {
+                print("isbn13 not found")
             }
         }
 

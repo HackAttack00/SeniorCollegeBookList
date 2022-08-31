@@ -62,7 +62,6 @@
 		0A3709A328A72F8000A676D1 /* SeniorCollegeBookApp */ = {
 			isa = PBXGroup;
 			children = (
-				0A3709BA28A72FBE00A676D1 /* SearchList */,
 				0A3709B928A72FA100A676D1 /* Models */,
 				0A3709B828A72F9600A676D1 /* API */,
 				0A3709A428A72F8000A676D1 /* AppDelegate.swift */,
@@ -91,13 +90,6 @@
 				0A3709BF28A752DE00A676D1 /* Book.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		0A3709BA28A72FBE00A676D1 /* SearchList */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

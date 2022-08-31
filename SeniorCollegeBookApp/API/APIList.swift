@@ -26,6 +26,7 @@ struct API {
         
         case newBook
         case searchBook(String, Int)
+        case book(String)
         
         var url: URL {
             switch self {
@@ -34,6 +35,9 @@ struct API {
                 
             case .searchBook(let title, let page):
                 return EndPoint.baseURL.appendingPathComponent("search/\(title)/\(page)")
+            
+            case .book(let bookCode):
+                return EndPoint.baseURL.appendingPathComponent("books/\(bookCode)")
             }
         }
     }
@@ -92,6 +96,24 @@ struct API {
                 switch error {
                 case is URLError:
                     return Error.addressUnreachable(EndPoint.newBook.url)
+                default: return Error.invalidResponse
+                }
+            }
+            .map {
+                return $0
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func fetchBookInfo(bookCode:String) -> AnyPublisher<Book, Error> {
+        URLSession.shared.dataTaskPublisher(for: EndPoint.book(bookCode).url)
+            .receive(on: apiQueue)
+            .map { $0.data }
+            .decode(type: Book.self, decoder: decoder)
+            .mapError { error -> API.Error in
+                switch error {
+                case is URLError:
+                    return Error.addressUnreachable(EndPoint.book(bookCode).url)
                 default: return Error.invalidResponse
                 }
             }
