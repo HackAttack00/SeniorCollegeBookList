@@ -99,12 +99,36 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        self.performSegue(withIdentifier:"DetailBookIdentifier" ,sender:indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "DetailBookIdentifier"
+        {
+            let destination = segue.destination as! BookDetailInfoViewController
+            let index = sender as! Int
+
+            if let imageStringOfURL = self.books[index].image {
+                destination.downloadImage(from: URL(string: imageStringOfURL)!)
+            }
+            
+            if let desc = self.books[index].subtitle {
+                destination.setBookDescription(desc: desc)
+            }
+        }
+
     }
 }
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchBarSearchButtonClicked");
+        
+        self.books = []
+        self.tableView.reloadData()
+        
         guard let searchText = searchBar.text else {
             return
         }

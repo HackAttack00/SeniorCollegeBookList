@@ -15,6 +15,7 @@
 		0A3709B128A72F8300A676D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3709AF28A72F8300A676D1 /* LaunchScreen.storyboard */; };
 		0A3709BE28A7305300A676D1 /* APIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3709BD28A7305300A676D1 /* APIList.swift */; };
 		0A3709C028A752DE00A676D1 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3709BF28A752DE00A676D1 /* Book.swift */; };
+		0A6918B928BFB3B900DF7D0D /* BookDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6918B828BFB3B900DF7D0D /* BookDetailInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0A3709B228A72F8300A676D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3709BD28A7305300A676D1 /* APIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIList.swift; sourceTree = "<group>"; };
 		0A3709BF28A752DE00A676D1 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		0A6918B828BFB3B900DF7D0D /* BookDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				0A3709A428A72F8000A676D1 /* AppDelegate.swift */,
 				0A3709A628A72F8000A676D1 /* SceneDelegate.swift */,
 				0A3709A828A72F8000A676D1 /* ViewController.swift */,
+				0A6918B828BFB3B900DF7D0D /* BookDetailInfoViewController.swift */,
 				0A3709AA28A72F8000A676D1 /* Main.storyboard */,
 				0A3709AD28A72F8300A676D1 /* Assets.xcassets */,
 				0A3709AF28A72F8300A676D1 /* LaunchScreen.storyboard */,
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6918B928BFB3B900DF7D0D /* BookDetailInfoViewController.swift in Sources */,
 				0A3709A928A72F8000A676D1 /* ViewController.swift in Sources */,
 				0A3709BE28A7305300A676D1 /* APIList.swift in Sources */,
 				0A3709C028A752DE00A676D1 /* Book.swift in Sources */,
