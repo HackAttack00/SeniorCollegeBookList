@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     
     private var bookAPI:API = API()
     private var subscriptions = Set<AnyCancellable>()
-    
     @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
