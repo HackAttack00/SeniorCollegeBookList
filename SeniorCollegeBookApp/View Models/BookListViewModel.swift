@@ -12,25 +12,42 @@ class NewBookListViewModel: ObservableObject {
     private var bookAPI:API = API()
     private var subscriptions = Set<AnyCancellable>()
     @Published var books = [BookViewModel]()
+    private var cancellable: AnyCancellable?
     
     init() {
         fetchNewBookList()
     }
     
+//    private func fetchNewBookList() {
+//        bookAPI.fetchNewBooks()
+//            .receive(on: DispatchQueue.main)
+//            .catch { _ in Empty()}
+//            .map {
+//                return $0.books ?? []
+//            }
+//            .assign(to: \.books, on: self)
+//            .store(in: &subscriptions)
+//    }
+    
     private func fetchNewBookList() {
-        bookAPI.fetchNewBooks()
+        self.cancellable = bookAPI.fetchNewBooks()
             .receive(on: DispatchQueue.main)
-            .catch { _ in Empty()}
-            .map {
-                return $0.books ?? []
+//            .catch { _ in Empty<BookResponse, <#Failure: Error#>>()}
+            .map { bookResponse in
+                bookResponse.books.map { books in
+                    books.map { book in
+                        BookViewModel(book: book)
+                    }
+                }!
+            }.sink { _ in
+            } receiveValue: {
+                self.books = $0
             }
-            .assign(to: \.books, on: self)
-            .store(in: &subscriptions)
     }
 }
 
-class BookViewModel: ObservableObject {
-    var book:Book? = nil
+struct BookViewModel {
+    let book: Book
 }
 
 
