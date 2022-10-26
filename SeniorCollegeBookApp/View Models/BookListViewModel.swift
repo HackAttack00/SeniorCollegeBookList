@@ -17,18 +17,7 @@ class NewBookListViewModel: ObservableObject {
     init() {
         fetchNewBookList()
     }
-    
-//    private func fetchNewBookList() {
-//        bookAPI.fetchNewBooks()
-//            .receive(on: DispatchQueue.main)
-//            .catch { _ in Empty()}
-//            .map {
-//                return $0.books ?? []
-//            }
-//            .assign(to: \.books, on: self)
-//            .store(in: &subscriptions)
-//    }
-    
+
     private func fetchNewBookList() {
         self.cancellable = bookAPI.fetchNewBooks()
             .receive(on: DispatchQueue.main)
@@ -49,15 +38,3 @@ class NewBookListViewModel: ObservableObject {
 struct BookViewModel {
     let book: Book
 }
-
-
-//func fetchNewBooks() {
-//    bookAPI.fetchNewBooks()
-//        .receive(on: DispatchQueue.main)
-//        .catch { _ in Empty()}
-//        .map {
-//            return $0.books ?? []
-//        }
-//        .assign(to: \.moreBooks, on: self)
-//        .store(in: &subscriptions)
-//}

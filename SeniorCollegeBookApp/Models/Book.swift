@@ -14,7 +14,7 @@ struct BookResponse: Codable {
 }
 
 struct Book: Codable {
-    let title: String?
+    let title: String
     let subtitle: String?
     let authors: String?
     let publisher: String?
@@ -30,7 +30,7 @@ struct Book: Codable {
     //let pdf: [PDF]?
     
     static var placeHolder: Book {
-        return Book(title: nil,
+        return Book(title: "",
                     subtitle: nil,
                     authors: nil,
                     publisher: nil,

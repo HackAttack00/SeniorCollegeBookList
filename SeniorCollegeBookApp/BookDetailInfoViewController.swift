@@ -43,7 +43,7 @@ class BookDetailInfoViewController: UIViewController {
         self.bookDescription?.text = desc
     }
     
-    var book = Book(title: nil, subtitle: nil, authors: nil, publisher: nil, isbn10: nil, isbn13: nil, pages: nil, years: nil, rating: nil, desc: nil, price: nil, image: nil, url: nil) {
+    var book = Book(title: "", subtitle: nil, authors: nil, publisher: nil, isbn10: nil, isbn13: nil, pages: nil, years: nil, rating: nil, desc: nil, price: nil, image: nil, url: nil) {
         didSet {
             if let image = book.image {
                 self.downloadImage(from: URL(string: image)!)
