@@ -21,7 +21,6 @@ class NewBookListViewModel: ObservableObject {
     private func fetchNewBookList() {
         self.cancellable = bookAPI.fetchNewBooks()
             .receive(on: DispatchQueue.main)
-//            .catch { _ in Empty<BookResponse, <#Failure: Error#>>()}
             .map { bookResponse in
                 bookResponse.books.map { books in
                     books.map { book in

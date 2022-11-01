@@ -13,7 +13,12 @@ struct BookListView: View {
     var body: some View {
         NavigationView {
             List(self.newBookListVM.books, id: \.book.title) { bookVM in
-                Text("\(bookVM.book.title)")
+                //Text("\(bookVM.book.url!)")
+                if let isbn13 = bookVM.book.isbn13 {
+                    NavigationLink(destination: BookDetailView(bookCode: isbn13)) {
+                        BookRow(imageURL: URL(string:bookVM.book.image!), title: bookVM.book.title, description: bookVM.book.desc)
+                    }
+                }
             }
             .navigationTitle("노인대학")
         }
